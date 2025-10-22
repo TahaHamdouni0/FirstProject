@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Author;
+use App\Service\HappyQuote;
+
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,13 +24,27 @@ final class AuthorController extends AbstractController
     }
 
     #[Route('/ShowAllAuthor' , name:'ShowAllAuthor')]
-    public function ShowAllAuthor(AuthorRepository $repo)
+    public function ShowAllAuthor(AuthorRepository $repo,HappyQuote $quote)
     {
+        //new pour service//
+        $bestQuote=$quote->getHappyMessage();
+        ////
         $authors = $repo->findAll();
         return $this->render('author/listAuthor.html.twig', [
-            'list' => $authors
+            'list' => $authors , 'thebest'=> $bestQuote
         ]);
 
+
+
+    }
+    #[Route('/authors/best', name: 'best_authors')]
+    public function bestAuthors(BookManagerService $bookManagerService): Response
+    {
+        $bestAuthors = $bookManagerService->bestAuthors();
+
+        return $this->render('author/best.html.twig', [
+            'authors' => $bestAuthors,
+        ]);
     }
 
     #[Route('/addAuthor' , name:'addAuthor')]
@@ -78,4 +94,6 @@ final class AuthorController extends AbstractController
         return $this->redirect('ShowAllAuthor');
 
     }
+
+    
 }

@@ -60,8 +60,4 @@ class AuthorRepository extends ServiceEntityRepository
     return $req;
 }
 
-public function ShowAllAuthorDQL() {
-    
-}
-
 }
