@@ -1,0 +1,26 @@
+
+<h2>Ajouter un livre</h2>
+
+{{ form_start(formB) }}
+    <div>
+        {{ form_label(formB.title, 'Titre') }}
+        {{ form_widget(formB.title) }}
+    </div>
+
+    <div>
+        {{ form_label(formB.category, 'Catégorie') }}
+        {{ form_widget(formB.category) }}
+    </div>
+
+    <div>
+        {{ form_label(formB.publicationDate, 'Date de publication') }}
+        {{ form_widget(formB.publicationDate) }}
+    </div>
+
+    <div>
+        {{ form_label(formB.author, 'Auteur') }}
+        {{ form_widget(formB.author) }}
+    </div>
+
+    <button type="submit">Ajouter</button>
+{{ form_end(formB) }}

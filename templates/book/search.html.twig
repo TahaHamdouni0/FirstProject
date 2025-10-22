@@ -1,0 +1,23 @@
+<h1>Recherche de livre par référence</h1>
+
+<form method="get" action="{{ path('app_books_search') }}">
+    <label for="ref">Référence :</label>
+    <input id="ref" type="text" name="ref" placeholder="Ex : L1234" value="{{ ref }}">
+    <button type="submit">Rechercher</button>
+</form>
+
+<hr>
+
+
+    {% if books is not empty %}
+        <h2>Résultat(s) pour la référence "{{ ref }}" :</h2>
+        <ul>
+            {% for book in books %}
+                <li>{{ book.title }} — ({{ book.ref }})</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun livre trouvé pour "{{ ref }}".</p>
+    {% endif %}
+
+    <p>Entrez une référence et cliquez sur Rechercher.</p>

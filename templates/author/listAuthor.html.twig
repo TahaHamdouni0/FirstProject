@@ -1,0 +1,35 @@
+
+
+{% block body %}
+<h1 style="text-align:center; margin-bottom:20px;">Liste des auteurs</h1>
+
+{% if list is defined and list is not empty %}
+    <table border="1" cellpadding="10" cellspacing="0" style="margin:auto; border-collapse:collapse; width:80%; text-align:center;">
+        <thead style="background-color:#f2f2f2;">
+            <tr>
+                <th>ID</th>
+                <th>Nom d'utilisateur</th>
+                <th>Email</th>
+                <th>Âge</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in list %}
+                <tr>
+                    <td>{{ l.id }}</td>
+                    <td>{{ l.username }}</td>
+                    <td>{{ l.email }}</td>
+                    <td>{{ l.age }}</td>
+                    <td>
+                        <a href="{{ path('editAuthor', {'id': l.id}) }}">edit</a> |
+                        <a href="{{ path('deleteAuthor', {'id': l.id}) }}">delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p style="text-align:center; color:red;">Aucun auteur trouvé.</p>
+{% endif %}
+{% endblock %}
